@@ -1,0 +1,47 @@
+# Salt for deterministic hashing — rotate annually
+salt: "bminf-pii-deid-v1-2026"
+
+# Field → entity type mapping
+field_mapping:
+  patientName: FULL_NAME
+  patientDob: DOB
+  phone: PHONE
+  cccdNumber: CCCD
+  heinCardNumber: HEIN_CARD
+  patientRelativeName: FULL_NAME
+  patientRelativeMobile: PHONE
+  patientRelativePhone: PHONE
+  patientMotherName: FULL_NAME
+  patientFatherName: FULL_NAME
+  patientWorkPlaceName: FULL_NAME
+  patientAddress: ADDRESS
+  address: ADDRESS
+  htAddress: ADDRESS
+  patientCode: INTERNAL_ID
+  treatmentCode: INTERNAL_ID
+  patientGenderName: GENDER
+  clinicalNote: FREE_TEXT
+  pathologicalProcess: FREE_TEXT
+  clinicalSigns: FREE_TEXT
+  subclinicalResult: FREE_TEXT
+  fullExam: FREE_TEXT
+  partExam: FREE_TEXT
+  ptPathologicalHistory: FREE_TEXT
+  ptPathologicalHistoryFamily: FREE_TEXT
+  treatmentDirection: FREE_TEXT
+
+processing:
+  ner_enabled: true
+  ner_min_confidence: 0.6
+  max_depth: 20
+
+pseudonym:
+  deterministic: true
+  locale: vi_VN
+  dob_min_year_offset: -90
+  dob_max_year_offset: -18
+
+api:
+  proxy_enabled: false
+  upstream_url: "https://apiforai.thaovh.top/patients/query"
+  upstream_timeout: 30
